@@ -8,3 +8,10 @@ const MailDev = require(index)
 
 const maildev = new MailDev()
 maildev.listen()
+
+maildev.on('new', (email) => {
+  const PushBullet = require('pushbullet')
+  const pusher = new PushBullet(process.env.ACCESS_TOKEN)
+
+  pusher.note(process.env.DEVICE_ID, email.from.address + ": " + email.subject, email.text, function(error, response) {})
+})
