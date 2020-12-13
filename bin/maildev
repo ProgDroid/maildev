@@ -13,5 +13,5 @@ const PushBullet = require('pushbullet')
 const pusher = new PushBullet(process.env.ACCESS_TOKEN)
 
 maildev.on('new', (email) => {
-  pusher.note(process.env.DEVICE_ID, email.from.address + ": " + email.subject, email.text, function(error, response) {})
+  pusher.note(process.env.DEVICE_ID, email.from[0].address + ": " + email.subject, email.text, function(error, response) {})
 })
